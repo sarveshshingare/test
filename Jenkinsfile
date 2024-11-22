@@ -16,7 +16,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'f3fb152d-d1c3-44dd-b463-fbef83244c0b') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'my-docker-id') {
                         dockerImage.push()
                     }
                 }
