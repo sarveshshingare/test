@@ -22,18 +22,11 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+       stage('Deploy') {
             steps {
-                sshPublisher(
-                    publishers: [sshPublisherDesc(
-                        configName: 'EC2-server',
-                        transfers: [sshTransfer(
-                            sourceFiles: '',
-                            execCommand: 'docker run -d -p 80:3000 sarveshss2513/your-app'
-                        )]
-                    )]
-                )
+                bat '''
+                docker run -d -p 8080:3000 sarveshss2513/your-app
+                '''
             }
-        }
     }
 }
