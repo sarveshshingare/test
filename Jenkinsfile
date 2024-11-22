@@ -24,10 +24,16 @@ pipeline {
         }
        stage('Deploy') {
             steps {
-                bat '''
-                docker run -d -p 8081:3000 sarveshss2513/your-app
-                '''
+                sshPublisher(
+                    publishers: [sshPublisherDesc(
+                        configName: 'EC2-server',
+                        transfers: [sshTransfer(
+                            sourceFiles: '',
+                            execCommand: 'docker run -d -p 80:3000 your-dockerhub-username/your-app'
+                        )]
+                    )]
+                )
             }
-    }
+        }
 }
 }
