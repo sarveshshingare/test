@@ -25,7 +25,7 @@ pipeline {
        stage('Deploy') {
             steps {
                 bat '''
-                docker run -d -p 8080:3000 sarveshss2513/your-app
+                docker run -d -p 8081:3000 sarveshss2513/your-app
                 '''
             }
     }
